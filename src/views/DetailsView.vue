@@ -1,0 +1,116 @@
+<template>
+  <div v-if="error">{{ error }}</div>
+  <div v-if="recipe" class="recipe-detail">
+    <div class="detail-header">
+      <router-link :to="{ name: 'HomeView' }">Back</router-link>
+      <h2>Detailed Recipe Description</h2>
+      <span class="material-icons" :class="{favorite: recipe.favorite}">favorite</span>
+    </div>
+    <hr />
+    <h2>{{ recipe.title }}</h2>
+    <ul>
+      <li>{{ recipe.ingredient_1 }}</li>
+      <li>{{ recipe.ingredient_2 }}</li>
+      <li>{{ recipe.ingredient_3 }}</li>
+    </ul>
+    <p>{{ recipe.description }}</p>
+    <hr />
+    <section class="detail-footer">
+      <button @click="deleteRecipe">Delete</button>
+      <router-link :to="{name: 'EditRecipe', params:{id: recipe.id} }">Edit</router-link>
+    </section>
+  </div>
+  <div v-else>
+  <Spinner />
+  </div>
+</template>
+
+<script>
+import getSingleRecipe from "@/composables/getSingleRecipe";
+import Spinner from "@/components/Spinner.vue";
+import { useRouter, useRoute } from "vue-router";
+export default {
+  props: ["id"],
+  components: {
+    Spinner,
+  },
+  setup(props) {
+    const { recipe, error, fetchData } = getSingleRecipe(props.id);
+    const router = useRouter();
+    const route = useRoute();
+    const uri = `http://localhost:3000/recipes/${props.id}`;
+    fetchData();
+
+    const deleteRecipe = () => {
+      if (confirm('Do you really want to delete this Recipe?')) {
+        fetch(uri, { method: 'DELETE' })
+        router.push({name: 'HomeView'})
+      } else {
+        console.log('was not deleted from database');
+      }
+    }
+
+    // const handleDelete = (id) => {
+    //   recipe.value = recipe.value.filter((recipe) => {
+    //     return id !== recipe.id;
+    //   });
+    // };
+
+    return { recipe, error, deleteRecipe };
+  },
+};
+</script>
+
+<style scoped>
+.recipe-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.detail-header a {
+  text-decoration: none;
+  color: white;
+  background: blueviolet;
+  padding: 0.3rem 0.6rem;
+  border-radius: 1rem;
+}
+ul {
+  margin-left: 1rem;
+}
+.detail-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.detail-footer button, a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  background: blueviolet;
+  padding: 1rem;
+  border-radius: 3rem;
+  text-align: center;
+  box-shadow: -10px -10px 15px #ffffff, 8px 8px 25px #97a7c3;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
+  max-height: 2.5rem;
+  width: 6rem;
+}
+.material-icons {
+  font-size: 2rem;
+  color: #bbb;
+}
+.material-icons.favorite {
+  color: lightcoral;
+}
+</style>
