@@ -9,7 +9,7 @@
         "ingredient_3": "third ingredient"
       },
       "description": "First Recipe's Recipe description. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto quasi nihil quae soluta necessitatibus, sit natus possimus qui quos alias.",
-      "favorite": true,
+      "favorite": false,
       "createAt": "30/10/2022"
     },
     {
