@@ -13,7 +13,11 @@
       <li>{{ recipe.ingredient_2 }}</li>
       <li>{{ recipe.ingredient_3 }}</li>
     </ul>
-    <p>{{ recipe.description }}</p>
+    <!-- <ul v-for="ingredient in recipe.ingredients" :key="recipe.id">
+      <li>{{ ingredient }}</li>
+    </ul> -->
+    <p class="detail-desc">{{ recipe.description }}</p>
+    <small>Published {{recipe.createAt}}</small>
     <hr />
     <section class="detail-footer">
       <button @click="deleteRecipe">Delete</button>
@@ -81,6 +85,10 @@ export default {
 }
 ul {
   margin-left: 1rem;
+  font-size: 1.25rem;
+}
+.detail-desc {
+  font-size: 1.25rem;
 }
 .detail-footer {
   display: flex;
@@ -104,7 +112,7 @@ ul {
   font-size: 1rem;
   font-weight: 500;
   max-height: 2.5rem;
-  width: 6rem;
+  /* width: 6rem; */
 }
 .material-icons {
   font-size: 2rem;

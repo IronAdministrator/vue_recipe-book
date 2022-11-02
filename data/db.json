@@ -19,26 +19,6 @@
       "description": "Second Recipe's description. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto quasi nihil quae soluta necessitatibus, sit natus possimus qui quos alias.",
       "favorite": false,
       "createAt": "30/10/2022"
-    },
-    {
-      "title": "Third Recipe",
-      "ingredient_1": "asdfalsk; dfj",
-      "ingredient_2": ";aslkdfj a;lskdfj",
-      "ingredient_3": "slk;dfjsal;kdfjasl;dfkj",
-      "description": ";alskdfjl;askdfjls;kdfjsldkfjsldkfjl;ksdjf;lsakdjfl;askdfjlas;kdfjls;kdfjlsa;kdfj;lakdfj",
-      "favorite": false,
-      "createAt": "01/11/2022",
-      "id": 3
-    },
-    {
-      "title": "newer Recipe Edited!!!!!",
-      "ingredient_1": "newer Recipe Edited!!!!!",
-      "ingredient_2": "Edited",
-      "ingredient_3": "Edited",
-      "description": "Edited",
-      "favorite": true,
-      "createAt": "01/11/2022",
-      "id": 4
     }
   ]
 }

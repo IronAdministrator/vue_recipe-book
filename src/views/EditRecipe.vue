@@ -40,8 +40,9 @@ export default {
       })
     });
 
-    const handleUpdate = () => {
-      fetch(uri, { 
+    const handleUpdate = async () => {
+      try {
+        await fetch(uri, { 
         method: 'PATCH',
         headers: { 'Content-Type': 'Application/json' },
         body: JSON.stringify({
@@ -51,9 +52,11 @@ export default {
           ingredient_3: ingredientThree.value,
           description: description.value
         })
-      }).then(() => {
-        router.push({ name: "HomeView" });
-      }).catch(err => console.log(err))
+      })
+      } catch (err) {
+        console.log(err.message)
+      }
+      router.push({ name: "HomeView" });
     }
 
     return { title, ingredientOne, ingredientTwo, ingredientThree, description, handleUpdate }

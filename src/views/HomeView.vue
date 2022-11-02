@@ -58,6 +58,9 @@ export default {
   gap: 2rem;
 }
 .home a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
   color: white;
   background: blueviolet;
@@ -65,6 +68,11 @@ export default {
   border-radius: 1rem;
   text-align: center;
   box-shadow: -10px -10px 15px #ffffff, 8px 8px 25px #97a7c3;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
 }
 h2 {
   margin-bottom: 2rem;

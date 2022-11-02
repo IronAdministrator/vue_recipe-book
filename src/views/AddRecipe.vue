@@ -1,4 +1,5 @@
 <template>
+  <h2>All Recipes</h2>
   <form class="create" @submit.prevent="handleSubmit">
     <input v-model="title" type="text" placeholder="Title" />
     <input v-model="ingredientOne" type="text" placeholder="Ingredient 1" />
@@ -26,17 +27,33 @@ export default {
     const description = ref("");
     const favorite = ref(false);
     const date = ref("");
+    const time = ref("");
+    const dateTime = ref("");
 
     // get current date >
-    let currentDate = () => {
-      return new Date().toLocaleDateString();
-    };
-    onMounted(() => {
-      date.value = currentDate();
-    });
+    // let currentDate = () => {
+    //   return new Date().toLocaleDateString();
+    // };
+    // let currentTime = () => {
+    //   return new Date().toLocaleTimeString();
+    // };
+    // onMounted(() => {
+    //   date.value = currentDate();
+    //   time.value = currentTime();
+    //   dateTime.value = `${date.value} / ${time.value}`;
+    // });
     // get current date >
 
     const handleSubmit = async () => {
+      // let currentDate = () => {
+      //   return new Date().toLocaleDateString();
+      // };
+      // let currentTime = () => {
+      //   return new Date().toLocaleTimeString();
+      // };
+      // date.value = currentDate();
+      // time.value = currentTime();
+      // dateTime.value = `${date.value} / ${time.value}`;
       let recipe = {
         title: title.value,
         ingredient_1: ingredientOne.value,
@@ -44,7 +61,7 @@ export default {
         ingredient_3: ingredientThree.value,
         description: description.value,
         favorite: favorite.value,
-        createAt: date.value,
+        createAt: `${new Date().toLocaleDateString()} / ${new Date().toLocaleTimeString()}`,
       };
       try {
         await fetch("http://localhost:3000/recipes", {
@@ -88,6 +105,7 @@ textarea {
   font-size: 1rem;
 }
 textarea {
+  white-space: pre;
   padding: 1.3rem;
   min-height: 20%;
 }
