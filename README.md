@@ -5,7 +5,7 @@
 - npm run serve
 
 2.Terminal:
-json-server --watch data/db.json
+- json-server --watch data/db.json
 ## Project setup
 ```
 npm install
