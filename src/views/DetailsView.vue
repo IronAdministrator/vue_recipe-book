@@ -3,7 +3,7 @@
   <div v-if="recipe" class="recipe-detail">
     <div class="detail-header">
       <router-link :to="{ name: 'HomeView' }">Back</router-link>
-      <h2>Detailed Recipe Description</h2>
+      <h2>Detailed Description</h2>
       <span class="material-icons" :class="{favorite: recipe.favorite}">favorite</span>
     </div>
     <hr />
@@ -65,6 +65,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 2rem;
 }
 .detail-header {
   display: flex;

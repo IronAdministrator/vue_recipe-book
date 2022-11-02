@@ -3,12 +3,15 @@
     <div v-if="error">{{ error }}</div>
     <div v-if="recipes.length">
       <h2>All Recipes</h2>
-      <RecipeList :recipes="recipes" /> <!-- passing recipes as props to RecipeList Component -->
+      <RecipeList :recipes="recipes" />
+      <!-- passing recipes as props to RecipeList Component -->
     </div>
     <div v-else>
       <Spinner />
     </div>
-    <router-link :to="{name: 'AddRecipe'}">Add</router-link>
+    <div class="add-btn-container">
+      <router-link :to="{ name: 'AddRecipe' }">Add</router-link>
+    </div>
     <!-- {{recipes}} -->
     <!-- <div>{{ date }}</div> -->
   </div>
@@ -19,7 +22,7 @@
 import getRecipes from "@/composables/getRecipes";
 import RecipeList from "@/components/RecipeList.vue";
 import Spinner from "@/components/Spinner.vue";
-
+import { onMounted } from "vue";
 export default {
   name: "HomeView",
   components: {
@@ -28,8 +31,9 @@ export default {
   },
   setup() {
     const { recipes, error, fetchData } = getRecipes();
-
-    fetchData();
+    onMounted(() => {
+      fetchData();
+    });
 
     // const recipesTest = () => {
     //   console.log(recipes);
@@ -66,5 +70,8 @@ export default {
 h2 {
   margin-bottom: 2rem;
   text-align: center;
+}
+.add-btn-container {
+  padding: 0 2rem 2rem 2rem;
 }
 </style>

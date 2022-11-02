@@ -29,7 +29,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 3rem;
+  padding: 1rem;
   border-radius: 3rem;
   /* box-shadow: -10px -10px 15px #ffffff,
     8px 8px 25px #97a7c3; */

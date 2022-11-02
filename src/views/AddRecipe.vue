@@ -1,5 +1,5 @@
 <template>
-  <h2>All Recipes</h2>
+  <h2>Add Recipe</h2>
   <form class="create" @submit.prevent="handleSubmit">
     <input v-model="title" type="text" placeholder="Title" />
     <input v-model="ingredients.ingredient_1" type="text" placeholder="Ingredient 1" />
@@ -88,10 +88,14 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  text-align: center;
+}
 form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding: 2rem;
 }
 input,
 textarea {
