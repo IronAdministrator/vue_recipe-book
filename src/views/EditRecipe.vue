@@ -1,9 +1,9 @@
 <template>
   <form class="create" @submit.prevent="handleUpdate">
     <input v-model="title" type="text" placeholder="Title" />
-    <input v-model="ingredientOne" type="text" placeholder="Ingredient 1" />
-    <input v-model="ingredientTwo" type="text" placeholder="Ingredient 2" />
-    <input v-model="ingredientThree" type="text" placeholder="Ingredient 3" />
+    <input v-model="ingredients.ingredient_1" type="text" placeholder="Ingredient 1" />
+    <input v-model="ingredients.ingredient_2" type="text" placeholder="Ingredient 2" />
+    <input v-model="ingredients.ingredient_3" type="text" placeholder="Ingredient 3" />
     <textarea v-model="description" placeholder="Description"></textarea>
     <section class="footer">
       <router-link :to="{ name: 'DetailsView' }">Cancel</router-link>
@@ -21,9 +21,7 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const title = ref("");
-    const ingredientOne = ref("");
-    const ingredientTwo = ref("");
-    const ingredientThree = ref("");
+    const ingredients = ref({})
     const description = ref("");
     const uri = `http://localhost:3000/recipes/${props.id}`;
 
@@ -33,9 +31,7 @@ export default {
       .then(data => {
         console.log(data.title);
         title.value = data.title
-        ingredientOne.value = data.ingredient_1
-        ingredientTwo.value = data.ingredient_2
-        ingredientThree.value = data.ingredient_3
+        ingredients.value = data.ingredients
         description.value = data.description
       })
     });
@@ -47,9 +43,7 @@ export default {
         headers: { 'Content-Type': 'Application/json' },
         body: JSON.stringify({
           title: title.value,
-          ingredient_1: title.value,
-          ingredient_2: ingredientTwo.value,
-          ingredient_3: ingredientThree.value,
+          ingredients: ingredients.value,
           description: description.value
         })
       })
@@ -59,7 +53,7 @@ export default {
       router.push({ name: "HomeView" });
     }
 
-    return { title, ingredientOne, ingredientTwo, ingredientThree, description, handleUpdate }
+    return { title, ingredients, description, handleUpdate }
   }
 }
 </script>

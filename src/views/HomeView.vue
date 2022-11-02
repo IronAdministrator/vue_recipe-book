@@ -16,7 +16,6 @@
 
 <script>
 // @ is an alias to /src
-import { ref, onMounted } from "vue";
 import getRecipes from "@/composables/getRecipes";
 import RecipeList from "@/components/RecipeList.vue";
 import Spinner from "@/components/Spinner.vue";
@@ -36,16 +35,6 @@ export default {
     //   console.log(recipes);
     // }
     // recipesTest()
-
-    // get current date >
-    // const date = ref("");
-    // let currentDate = () => {
-    //   return new Date().toLocaleDateString();
-    // };
-    // onMounted(() => {
-    //   date.value = currentDate();
-    // });
-    // get current date >
 
     return { recipes, error };
   },

@@ -2,9 +2,9 @@
   <h2>All Recipes</h2>
   <form class="create" @submit.prevent="handleSubmit">
     <input v-model="title" type="text" placeholder="Title" />
-    <input v-model="ingredientOne" type="text" placeholder="Ingredient 1" />
-    <input v-model="ingredientTwo" type="text" placeholder="Ingredient 2" />
-    <input v-model="ingredientThree" type="text" placeholder="Ingredient 3" />
+    <input v-model="ingredients.ingredient_1" type="text" placeholder="Ingredient 1" />
+    <input v-model="ingredients.ingredient_2" type="text" placeholder="Ingredient 2" />
+    <input v-model="ingredients.ingredient_3" type="text" placeholder="Ingredient 3" />
     <textarea v-model="description" placeholder="Description"></textarea>
     <section class="footer">
       <router-link :to="{ name: 'HomeView' }">Back</router-link>
@@ -21,9 +21,11 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const title = ref("");
-    const ingredientOne = ref("");
-    const ingredientTwo = ref("");
-    const ingredientThree = ref("");
+    const ingredients = ref({
+      ingredient_1: "",
+      ingredient_2: "",
+      ingredient_3: ""
+    })
     const description = ref("");
     const favorite = ref(false);
     const date = ref("");
@@ -56,9 +58,7 @@ export default {
       // dateTime.value = `${date.value} / ${time.value}`;
       let recipe = {
         title: title.value,
-        ingredient_1: ingredientOne.value,
-        ingredient_2: ingredientTwo.value,
-        ingredient_3: ingredientThree.value,
+        ingredients: ingredients.value,
         description: description.value,
         favorite: favorite.value,
         createAt: `${new Date().toLocaleDateString()} / ${new Date().toLocaleTimeString()}`,
@@ -77,9 +77,7 @@ export default {
 
     return {
       title,
-      ingredientOne,
-      ingredientTwo,
-      ingredientThree,
+      ingredients,
       description,
       favorite,
       date,

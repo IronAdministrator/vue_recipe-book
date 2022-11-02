@@ -8,14 +8,9 @@
     </div>
     <hr />
     <h2>{{ recipe.title }}</h2>
-    <ul>
-      <li>{{ recipe.ingredient_1 }}</li>
-      <li>{{ recipe.ingredient_2 }}</li>
-      <li>{{ recipe.ingredient_3 }}</li>
-    </ul>
-    <!-- <ul v-for="ingredient in recipe.ingredients" :key="recipe.id">
+    <ul v-for="ingredient in recipe.ingredients" :key="recipe.id">
       <li>{{ ingredient }}</li>
-    </ul> -->
+    </ul>
     <p class="detail-desc">{{ recipe.description }}</p>
     <small>Published {{recipe.createAt}}</small>
     <hr />
