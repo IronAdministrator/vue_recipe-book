@@ -47,10 +47,10 @@ export default {
           description: description.value
         })
       })
+      router.push({ name: "HomeView" });
       } catch (err) {
         console.log(err.message)
       }
-      router.push({ name: "HomeView" });
     }
 
     return { title, ingredients, description, handleUpdate }

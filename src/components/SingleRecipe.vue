@@ -24,8 +24,8 @@ export default {
       return `${props.recipe.description.substring(0, 60)} ....`;
     });
 
-    const toggleFavorite = () => {
-      fetch(uri, { 
+    const toggleFavorite = async () => {
+      await fetch(uri, { 
         method: 'PATCH',
         headers: { 'Content-Type': 'Application/json' },
         body: JSON.stringify({favorite: !props.recipe.favorite})
