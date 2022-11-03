@@ -1,9 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import DetailsView from '../views/DetailsView.vue'
-import AddRecipe from '../views/AddRecipe.vue'
-import EditRecipe from '../views/EditRecipe.vue'
-import NotFound from '../views/NotFound.vue'
+import HomeView from '@/views/HomeView.vue'
+import DetailsView from '@/views/DetailsView.vue'
+import NotFound from '@/views/NotFound.vue'
+import AddEditForm from "@/views/AddEditForm";
 
 const routes = [
   {
@@ -19,14 +18,13 @@ const routes = [
   },
   {
     path: '/add',
-    name: 'AddRecipe',
-    component: AddRecipe,
+    name: 'AddForm',
+    component: AddEditForm,
   },
   {
-    path: '/edit-recipe/:id',
-    name: 'EditRecipe',
-    component: EditRecipe,
-    props: true,
+    path: '/edit/:id',
+    name: 'EditForm',
+    component: AddEditForm,
   },
   // catchAll404
   {

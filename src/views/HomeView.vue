@@ -10,7 +10,7 @@
       <Spinner />
     </div>
     <div class="add-btn-container">
-      <router-link :to="{ name: 'AddRecipe' }">Add</router-link>
+      <router-link :to="{ name: 'AddForm' }">Add</router-link>
     </div>
     <!-- {{recipes}} -->
     <!-- <div>{{ date }}</div> -->

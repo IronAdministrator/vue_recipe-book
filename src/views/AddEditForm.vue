@@ -1,5 +1,8 @@
 <template>
-  <h2>Add Recipe</h2>
+  <div>
+    <h2 v-if="route.params.id">Edit Recipe</h2>
+    <h2 v-else>Add Recipe</h2>
+  </div>
   <form class="create" @submit.prevent="handleSubmit">
     <input v-model="title" type="text" placeholder="Title" />
     <input v-model="ingredients.ingredient_1" type="text" placeholder="Ingredient 1" />
@@ -31,8 +34,22 @@ export default {
     const date = ref("");
     const time = ref("");
     const dateTime = ref("");
+    const uri = `http://localhost:3000/recipes/${route.params.id}`;
 
-    // get current date >
+    onMounted(() => {
+      if (route.params.id) {
+        fetch(uri)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data.title);
+          title.value = data.title
+          ingredients.value = data.ingredients
+          description.value = data.description
+        })
+      }
+    });
+
+
     // let currentDate = () => {
     //   return new Date().toLocaleDateString();
     // };
@@ -44,7 +61,6 @@ export default {
     //   time.value = currentTime();
     //   dateTime.value = `${date.value} / ${time.value}`;
     // });
-    // get current date >
 
     const handleSubmit = async () => {
       // let currentDate = () => {
@@ -64,11 +80,23 @@ export default {
         createAt: `${new Date().toLocaleDateString()} / ${new Date().toLocaleTimeString()}`,
       };
       try {
-        await fetch("http://localhost:3000/recipes", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(recipe),
-        });
+        if (route.params.id) {
+          await fetch(uri, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'Application/json' },
+            body: JSON.stringify({
+              title: title.value,
+              ingredients: ingredients.value,
+              description: description.value
+            })
+          })
+        } else {
+          await fetch("http://localhost:3000/recipes", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(recipe),
+          });
+        }
       } catch (err) {
         console.log(err.message);
       }
@@ -82,6 +110,7 @@ export default {
       favorite,
       date,
       handleSubmit,
+      route
     };
   },
 };
@@ -107,9 +136,12 @@ textarea {
   font-size: 1rem;
 }
 textarea {
-  white-space: pre;
   padding: 1.3rem;
   min-height: 20%;
+  overflow: hidden;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  white-space: pre-line;
 }
 button,
 a {

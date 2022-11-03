@@ -16,8 +16,9 @@
     <hr />
     <section class="detail-footer">
       <button @click="deleteRecipe">Delete</button>
-      <router-link :to="{name: 'EditRecipe', params:{id: recipe.id} }">Edit</router-link>
+      <router-link :to="{name: 'EditForm', params:{id: recipe.id} }">Edit</router-link>
     </section>
+      {{recipe.id}}
   </div>
   <div v-else>
   <Spinner />
@@ -55,7 +56,7 @@ export default {
     //   });
     // };
 
-    return { recipe, error, deleteRecipe };
+    return { recipe, error, deleteRecipe, route };
   },
 };
 </script>
@@ -85,6 +86,9 @@ ul {
 }
 .detail-desc {
   font-size: 1.25rem;
+  word-break: break-all;
+  hyphens: auto;
+  white-space: pre-line;
 }
 .detail-footer {
   display: flex;
