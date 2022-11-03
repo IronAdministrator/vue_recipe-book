@@ -72,12 +72,14 @@ export default {
       // date.value = currentDate();
       // time.value = currentTime();
       // dateTime.value = `${date.value} / ${time.value}`;
+      const options = { day: "numeric", month: "long", year: "numeric", hourCycle: "h24", hour: "numeric", minute: "numeric"}
       let recipe = {
         title: title.value,
         ingredients: ingredients.value,
         description: description.value,
         favorite: favorite.value,
-        createAt: `${new Date().toLocaleDateString()} / ${new Date().toLocaleTimeString()}`,
+        createAt: `${new Date().toLocaleDateString()}`,
+        updateAt: "",
       };
       try {
         if (route.params.id) {
@@ -87,7 +89,8 @@ export default {
             body: JSON.stringify({
               title: title.value,
               ingredients: ingredients.value,
-              description: description.value
+              description: description.value,
+              updateAt: `${new Date().toLocaleString("en-US", options)}`,
             })
           })
         } else {
@@ -138,9 +141,8 @@ textarea {
 textarea {
   padding: 1.3rem;
   min-height: 20%;
-  overflow: hidden;
-  word-break: break-all;
-  overflow-wrap: break-word;
+  /*word-break: break-all;*/
+  /*overflow-wrap: break-word;*/
   white-space: pre-line;
 }
 button,

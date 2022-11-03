@@ -25,16 +25,30 @@
       "createAt": "30/10/2022"
     },
     {
-      "title": "newTest updated",
+      "title": "sadfasdfasdfasdf",
       "ingredients": {
-        "ingredient_1": "updated",
-        "ingredient_2": "updated",
-        "ingredient_3": "updated"
+        "ingredient_1": "asdfas",
+        "ingredient_2": "dfsdfasd",
+        "ingredient_3": "fsdfasdfasdf"
       },
-      "description": "updated",
-      "favorite": true,
-      "createAt": "11/3/2022 / 9:34:59 AM",
+      "description": "asdfasdfasdfsdfgsdfgsdfgsdfasdf",
+      "favorite": false,
+      "createAt": "11/3/2022",
+      "updateAt": "November 3, 2022 at 12:08",
       "id": 3
+    },
+    {
+      "title": "asdfasdfasdf",
+      "ingredients": {
+        "ingredient_1": "sdf",
+        "ingredient_2": "asdf",
+        "ingredient_3": "asdfasdf"
+      },
+      "description": "sdfasdfasdfsdfasdfasd",
+      "favorite": false,
+      "createAt": "11/3/2022",
+      "updateAt": "November 3, 2022 at 12:11",
+      "id": 4
     }
   ]
 }

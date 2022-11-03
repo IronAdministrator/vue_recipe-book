@@ -12,13 +12,16 @@
       <li>{{ ingredient }}</li>
     </ul>
     <p class="detail-desc">{{ recipe.description }}</p>
-    <small>Published {{recipe.createAt}}</small>
+    <div class="date-section">
+      <small>Published {{recipe.createAt}}</small>
+      <small v-if="recipe.updateAt">Last Updated {{recipe.updateAt}}</small>
+    </div>
     <hr />
     <section class="detail-footer">
       <button @click="deleteRecipe">Delete</button>
       <router-link :to="{name: 'EditForm', params:{id: recipe.id} }">Edit</router-link>
     </section>
-      {{recipe.id}}
+<!--      {{recipe.id}}-->
   </div>
   <div v-else>
   <Spinner />
@@ -86,9 +89,16 @@ ul {
 }
 .detail-desc {
   font-size: 1.25rem;
+  /*overflow: hidden;*/
   word-break: break-all;
   hyphens: auto;
   white-space: pre-line;
+}
+.date-section {
+  display: flex;
+  justify-content: space-between;
+  color: grey;
+  font-weight: 100;
 }
 .detail-footer {
   display: flex;
