@@ -41,7 +41,8 @@
 }
 .main-title {
   text-align: center;
-  text-decoration: underline;
   margin-bottom: 2rem;
+  color: #707579;
+  text-transform: uppercase;
 }
 </style>
