@@ -4,7 +4,7 @@
     <div class="detail-header">
       <router-link :to="{ name: 'HomeView' }">Back</router-link>
       <h2>Detailed Description</h2>
-      <span class="material-icons" :class="{favorite: recipe.favorite}">favorite</span>
+      <span @click="toggleFavoriteFromDetails" class="material-icons" :class="{favorite: recipe.favorite}">favorite</span>
     </div>
     <hr />
     <h2>{{ recipe.title }}</h2>
@@ -29,8 +29,10 @@
 </template>
 
 <script>
-import getSingleRecipe from "@/composables/getSingleRecipe";
+// import getSingleRecipe from "@/composables/getSingleRecipe";
+import fetchService from "@/composables/fetchService";
 import Spinner from "@/components/Spinner.vue";
+import { onMounted } from 'vue'
 import { useRouter, useRoute } from "vue-router";
 export default {
   props: ["id"],
@@ -38,11 +40,13 @@ export default {
     Spinner,
   },
   setup(props) {
-    const { recipe, error, fetchData } = getSingleRecipe(props.id);
+    const { fetchedData: recipe, error, fetchData } = fetchService(`http://localhost:3000/recipes/${props.id}`);
     const router = useRouter();
     const route = useRoute();
     const uri = `http://localhost:3000/recipes/${props.id}`;
-    fetchData();
+    onMounted(() => {
+      fetchData();
+    });
 
     const deleteRecipe = () => {
       if (confirm('Do you really want to delete this Recipe?')) {
@@ -53,13 +57,23 @@ export default {
       }
     }
 
+    const toggleFavoriteFromDetails = async () => {
+      await fetch(uri, { 
+        method: 'PATCH',
+        headers: { 'Content-Type': 'Application/json' },
+        body: JSON.stringify({favorite: !recipe.value.favorite})
+      }).then(() => {
+        fetchData()
+      }).catch(err => console.log(err))
+    }
+
     // const handleDelete = (id) => {
     //   recipe.value = recipe.value.filter((recipe) => {
     //     return id !== recipe.id;
     //   });
     // };
 
-    return { recipe, error, deleteRecipe, route };
+    return { recipe, error, deleteRecipe, route, toggleFavoriteFromDetails };
   },
 };
 </script>
@@ -127,6 +141,7 @@ ul {
 .material-icons {
   font-size: 2rem;
   color: #bbb;
+  cursor: pointer;
 }
 .material-icons.favorite {
   color: lightcoral;

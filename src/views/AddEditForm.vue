@@ -49,29 +49,7 @@ export default {
       }
     });
 
-
-    // let currentDate = () => {
-    //   return new Date().toLocaleDateString();
-    // };
-    // let currentTime = () => {
-    //   return new Date().toLocaleTimeString();
-    // };
-    // onMounted(() => {
-    //   date.value = currentDate();
-    //   time.value = currentTime();
-    //   dateTime.value = `${date.value} / ${time.value}`;
-    // });
-
     const handleSubmit = async () => {
-      // let currentDate = () => {
-      //   return new Date().toLocaleDateString();
-      // };
-      // let currentTime = () => {
-      //   return new Date().toLocaleTimeString();
-      // };
-      // date.value = currentDate();
-      // time.value = currentTime();
-      // dateTime.value = `${date.value} / ${time.value}`;
       const options = { day: "numeric", month: "long", year: "numeric", hourCycle: "h24", hour: "numeric", minute: "numeric"}
       let recipe = {
         title: title.value,

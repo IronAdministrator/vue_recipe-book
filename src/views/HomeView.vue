@@ -1,10 +1,9 @@
 <template>
   <div class="home">
     <div v-if="error">{{ error }}</div>
-    <div v-if="recipes.length">
+    <div v-if="allRecipes">
       <h2>All Recipes</h2>
-      <RecipeList :recipes="recipes" />
-      <!-- passing recipes as props to RecipeList Component -->
+      <RecipeList :recipes="allRecipes" />
     </div>
     <div v-else>
       <Spinner />
@@ -12,14 +11,13 @@
     <div class="add-btn-container">
       <router-link :to="{ name: 'AddForm' }">Add</router-link>
     </div>
-    <!-- {{recipes}} -->
-    <!-- <div>{{ date }}</div> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import getRecipes from "@/composables/getRecipes";
+// import getRecipes from "@/composables/getRecipes";
+import fetchService from "@/composables/fetchService";
 import RecipeList from "@/components/RecipeList.vue";
 import Spinner from "@/components/Spinner.vue";
 import { onMounted } from "vue";
@@ -30,17 +28,12 @@ export default {
     Spinner,
   },
   setup() {
-    const { recipes, error, fetchData } = getRecipes();
+    const { fetchedData: allRecipes, error, fetchData } = fetchService(`http://localhost:3000/recipes`);
     onMounted(() => {
       fetchData();
     });
 
-    // const recipesTest = () => {
-    //   console.log(recipes);
-    // }
-    // recipesTest()
-
-    return { recipes, error };
+    return { allRecipes, error };
   },
 };
 </script>

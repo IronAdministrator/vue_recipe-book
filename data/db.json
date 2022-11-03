@@ -21,7 +21,7 @@
         "ingredient_3": "third ingredient of Second Recipe"
       },
       "description": "Second Recipe's description. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto quasi nihil quae soluta necessitatibus, sit natus possimus qui quos alias.",
-      "favorite": false,
+      "favorite": true,
       "createAt": "30/10/2022"
     },
     {
