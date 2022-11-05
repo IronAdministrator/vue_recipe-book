@@ -11,7 +11,10 @@
     <textarea v-model="description" placeholder="Description"></textarea>
     <section class="footer">
       <router-link :to="{ name: 'HomeView' }">Back</router-link>
-      <button>Add</button>
+      <button>
+        <span v-if="route.params.id">Update</span>
+        <span v-else>Add</span>
+      </button>
     </section>
   </form>
 </template>
