@@ -5,9 +5,14 @@
   </div>
   <form class="create" @submit.prevent="handleSubmit">
     <input v-model="title" type="text" placeholder="Title" />
-    <input v-model="ingredients.ingredient_1" type="text" placeholder="Ingredient 1" />
+    <div class="ingredients-container" v-for="(ingredient, index) in ingredients" :key="`ingredientInput-${index}`">
+      <input v-model="ingredient.ingredient" type="text" placeholder="Ingredient" />
+      <span @click="addIngredient(ingredients)" class="material-icons">add</span>
+      <span @click="removeIngredient(ingredients)" class="material-icons remove">remove</span>
+    </div>
+    <!-- <input v-model="ingredients.ingredient_1" type="text" placeholder="Ingredient 1" />
     <input v-model="ingredients.ingredient_2" type="text" placeholder="Ingredient 2" />
-    <input v-model="ingredients.ingredient_3" type="text" placeholder="Ingredient 3" />
+    <input v-model="ingredients.ingredient_3" type="text" placeholder="Ingredient 3" /> -->
     <textarea v-model="description" placeholder="Description"></textarea>
     <section class="footer">
       <router-link v-if="route.params.id" :to="{ name: 'DetailsView' }">Back</router-link>
@@ -28,17 +33,23 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const title = ref("");
-    const ingredients = ref({
-      ingredient_1: "",
-      ingredient_2: "",
-      ingredient_3: ""
-    })
+    const ingredients = ref([
+    {ingredient: ""}
+  ])
     const description = ref("");
     const favorite = ref(false);
     const date = ref("");
     const time = ref("");
     const dateTime = ref("");
     const uri = `http://localhost:3000/recipes/${route.params.id}`;
+
+    const addIngredient = (ingredients) => {
+      ingredients.push({})
+    }
+
+    const removeIngredient = (ingredients, index) => {
+      ingredients.splice(index, 1)
+    }
 
     onMounted(() => {
       if (route.params.id) {
@@ -95,7 +106,9 @@ export default {
       favorite,
       date,
       handleSubmit,
-      route
+      route,
+      addIngredient,
+      removeIngredient,
     };
   },
 };
@@ -113,12 +126,13 @@ form {
 }
 input,
 textarea {
-  height: 3.5rem;
+  min-height: 3.5rem;
   padding: 0 1.5rem;
   border-radius: 3rem;
   box-shadow: inset -4px -4px 5px #ffffff, inset 4px 4px 5px #97a7c3;
   border: none;
   font-size: 1rem;
+  flex: 1 1 auto;
 }
 textarea {
   padding: 1.3rem;
@@ -126,6 +140,27 @@ textarea {
   /*word-break: break-all;*/
   /*overflow-wrap: break-word;*/
   white-space: pre-line;
+}
+.ingredients-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.ingredients-container .material-icons {
+  font-size: 1rem;
+  background-color: #ecf0f3;
+  color: lightseagreen;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  box-shadow: -10px -10px 15px #ffffff, 8px 8px 25px #97a7c3;
+  transition: all 500ms;
+}
+.ingredients-container .material-icons:hover {
+  transform: scale(1.1);
+}
+.ingredients-container .material-icons.remove {
+  color: lightcoral;
 }
 button,
 a {

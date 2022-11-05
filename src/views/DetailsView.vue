@@ -9,7 +9,7 @@
     <hr />
     <h2>{{ recipe.title }}</h2>
     <ul v-for="ingredient in recipe.ingredients" :key="recipe.id">
-      <li>{{ ingredient }}</li>
+      <li>{{ ingredient.ingredient }}</li>
     </ul>
     <p class="detail-desc">{{ recipe.description }}</p>
     <div class="date-section">
