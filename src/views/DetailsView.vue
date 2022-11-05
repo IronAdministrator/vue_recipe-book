@@ -142,8 +142,12 @@ ul {
   font-size: 2rem;
   color: #bbb;
   cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  box-shadow: -10px -10px 15px #ffffff, 8px 8px 25px #97a7c3;
 }
 .material-icons.favorite {
   color: lightcoral;
+  box-shadow: inset 5px 5px 10px #00000055, inset -5px -5px 10px #ffffffcc;
 }
 </style>

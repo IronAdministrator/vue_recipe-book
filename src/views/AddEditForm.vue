@@ -10,7 +10,8 @@
     <input v-model="ingredients.ingredient_3" type="text" placeholder="Ingredient 3" />
     <textarea v-model="description" placeholder="Description"></textarea>
     <section class="footer">
-      <router-link :to="{ name: 'HomeView' }">Back</router-link>
+      <router-link v-if="route.params.id" :to="{ name: 'DetailsView' }">Back</router-link>
+      <router-link v-else :to="{ name: 'HomeView' }">Back</router-link>
       <button>
         <span v-if="route.params.id">Update</span>
         <span v-else>Add</span>
