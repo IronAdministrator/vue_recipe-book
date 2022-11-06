@@ -8,7 +8,7 @@
     <div class="ingredients-container" v-for="(ingredient, index) in ingredients" :key="`ingredientInput-${index}`">
       <input v-model="ingredient.ingredient" type="text" placeholder="Ingredient" />
       <span @click="addIngredient(ingredients)" class="material-icons">add</span>
-      <span @click="removeIngredient(ingredients)" class="material-icons remove">remove</span>
+      <span v-if="ingredients.length > 1" @click="removeIngredient(ingredients)" class="material-icons remove">remove</span>
     </div>
     <!-- <input v-model="ingredients.ingredient_1" type="text" placeholder="Ingredient 1" />
     <input v-model="ingredients.ingredient_2" type="text" placeholder="Ingredient 2" />
@@ -45,10 +45,16 @@ export default {
 
     const addIngredient = (ingredients) => {
       ingredients.push({})
+      console.log(ingredients.length);
     }
 
     const removeIngredient = (ingredients, index) => {
-      ingredients.splice(index, 1)
+      if (ingredients.length > 1) {
+        ingredients.splice(index, 1)
+      } else {
+        alert("You need two have at least one Ingredient")
+      }
+      console.log(ingredients.length);
     }
 
     onMounted(() => {
