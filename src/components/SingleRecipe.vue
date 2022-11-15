@@ -12,35 +12,34 @@
   </div>
 </template>
 
-<script>
-import { computed, ref } from "vue";
-export default {
-  props: ["recipe"],
-  setup(props, {emit}) {
-    const uri = `http://localhost:3000/recipes/${props.recipe.id}`;
+<script setup>
+  import { computed, ref } from "vue";
+  // props: ["recipe"],
+  const props = defineProps({
+    recipe: Object
+  })
+  const emit = defineEmits(['favorite'])
+  // console.log(typeof props.recipe);
+  const uri = `http://localhost:3000/recipes/${props.recipe.id}`;
 
 
-    const snippetDesc = computed(() => {
-      return `${props.recipe.description.substring(0, 60)} ....`;
-    });
+  const snippetDesc = computed(() => {
+    return `${props.recipe.description.substring(0, 60)} ....`;
+  });
 
-    const toggleFavorite = async () => {
-      await fetch(uri, { 
-        method: 'PATCH',
-        headers: { 'Content-Type': 'Application/json' },
-        body: JSON.stringify({favorite: !props.recipe.favorite})
-      }).then(() => {
-        emit('favorite', props.recipe.id)
-      }).catch(err => console.log(err))
-    }
+  const toggleFavorite = async () => {
+    await fetch(uri, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'Application/json' },
+      body: JSON.stringify({favorite: !props.recipe.favorite})
+    }).then(() => {
+      emit('favorite', props.recipe.id)
+    }).catch(err => console.log(err))
+  }
 
-    // const toggleActive = () => {
-    //   isActive.value = !isActive.value
-    // }
-
-    return { snippetDesc, toggleFavorite };
-  },
-};
+  // const toggleActive = () => {
+  //   isActive.value = !isActive.value
+  // }
 </script>
 
 <style scoped>

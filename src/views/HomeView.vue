@@ -14,28 +14,17 @@
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-// import getRecipes from "@/composables/getRecipes";
-import fetchService from "@/composables/fetchService";
-import RecipeList from "@/components/RecipeList.vue";
-import Spinner from "@/components/Spinner.vue";
-import { onMounted } from "vue";
-export default {
-  name: "HomeView",
-  components: {
-    RecipeList,
-    Spinner,
-  },
-  setup() {
-    const { fetchedData: allRecipes, error, fetchData } = fetchService(`http://localhost:3000/recipes`);
-    onMounted(() => {
-      fetchData();
-    });
-
-    return { allRecipes, error };
-  },
-};
+<script setup>
+  // @ is an alias to /src
+  // import getRecipes from "@/composables/getRecipes";
+  import fetchService from "@/composables/fetchService";
+  import RecipeList from "@/components/RecipeList.vue";
+  import Spinner from "@/components/Spinner.vue";
+  import { onMounted } from "vue";
+  const { fetchedData: allRecipes, error, fetchData } = fetchService(`http://localhost:3000/recipes`);
+  onMounted(() => {
+    fetchData();
+  });
 </script>
 <style scoped>
 .home {

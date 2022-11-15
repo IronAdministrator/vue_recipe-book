@@ -5,17 +5,15 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: ["currentFilter"],
-  setup(props, {emit}) {
-    const updateFilter = (filterBy) => {
-      emit('filterChange', filterBy)
-    }
-
-    return {updateFilter};
-  },
-};
+<script setup>
+  // props: ["currentFilter"],
+  const props = defineProps({
+    currentFilter: String
+  })
+  const emit = defineEmits(['filterChange'])
+  const updateFilter = (filterBy) => {
+    emit('filterChange', filterBy)
+  }
 </script>
 
 <style scoped>

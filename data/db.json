@@ -3,11 +3,17 @@
     {
       "id": 1,
       "title": "First Recipe Update!",
-      "ingredients": {
-        "ingredient_1": "first ingredient of First Recipe",
-        "ingredient_2": "second ingredient of First Recipe",
-        "ingredient_3": "third ingredient of First Recipe"
-      },
+      "ingredients": [
+        {
+          "ingredient": "first ingredient of First Recipe"
+        },
+        {
+          "ingredient": "second ingredient of First Recipe"
+        },
+        {
+          "ingredient": "third ingredient of First Recipe"
+        }
+      ],
       "description": "First Recipe's description. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto quasi nihil quae soluta necessitatibus, sit natus possimus qui quos alias.",
       "favorite": true,
       "createAt": "30/10/2022",
@@ -16,27 +22,49 @@
     {
       "id": 2,
       "title": "Second Recipe",
-      "ingredients": {
-        "ingredient_1": "first ingredient of Second Recipe",
-        "ingredient_2": "second ingredient of Second Recipe",
-        "ingredient_3": "third ingredient of Second Recipe"
-      },
+      "ingredients": [
+        {
+          "ingredient": "first ingredient of Second Recipe"
+        },
+        {
+          "ingredient": "second ingredient of Second Recipe"
+        },
+        {
+          "ingredient": "third ingredient of Second Recipe"
+        }
+      ],
       "description": "Second Recipe's description. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto quasi nihil quae soluta necessitatibus, sit natus possimus qui quos alias.",
-      "favorite": false,
+      "favorite": true,
       "createAt": "30/10/2022"
     },
     {
-      "title": "sadfasdfasdfasdf Updated!",
-      "ingredients": {
-        "ingredient_1": "asdfas",
-        "ingredient_2": "dfsdfasd",
-        "ingredient_3": "fsdfasdfasdf"
-      },
-      "description": "asdfasdfasdfsdfgsdfgsdfgsdfasdf",
-      "favorite": true,
-      "createAt": "11/3/2022",
-      "updateAt": "November 5, 2022 at 19:38",
+      "title": "testOne",
+      "ingredients": [
+        {
+          "ingredient": "efefersdfas"
+        },
+        {
+          "ingredient": "add new ingredient"
+        }
+      ],
+      "description": "desc",
+      "favorite": false,
+      "createAt": "11/15/2022",
+      "updateAt": "November 15, 2022 at 11:36",
       "id": 3
+    },
+    {
+      "title": "oneMoreTest",
+      "ingredients": [
+        {
+          "ingredient": "asdfaefef"
+        }
+      ],
+      "description": "desc asdl;fk jaoejl k\nasdfk jadf \nasld;fk jasd;f asdf \nasdfkj;ldkjalsdkjf\n",
+      "favorite": false,
+      "createAt": "11/15/2022",
+      "updateAt": "November 15, 2022 at 13:49",
+      "id": 4
     }
   ]
 }

@@ -6,9 +6,8 @@
   <router-link :to="{name: 'home'}">Go back to HomePage</router-link>
 </template>
 
-<script>
-export default {
-}
+<script setup>
+
 </script>
 
 <style scoped>

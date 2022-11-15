@@ -8,8 +8,11 @@
     </div>
     <hr />
     <h2>{{ recipe.title }}</h2>
-    <ul v-for="ingredient in recipe.ingredients" :key="recipe.id">
-      <li>{{ ingredient.ingredient }}</li>
+    {{typeof recipe.id}}
+    <ul class="detail-ingredients">
+      <li v-for="ingredient in recipe.ingredients" :key="recipe.id">
+        {{ ingredient.ingredient }}
+      </li>
     </ul>
     <p class="detail-desc">{{ recipe.description }}</p>
     <div class="date-section">
@@ -28,54 +31,48 @@
   </div>
 </template>
 
-<script>
-// import getSingleRecipe from "@/composables/getSingleRecipe";
-import fetchService from "@/composables/fetchService";
-import Spinner from "@/components/Spinner.vue";
-import { onMounted } from 'vue'
-import { useRouter, useRoute } from "vue-router";
-export default {
-  props: ["id"],
-  components: {
-    Spinner,
-  },
-  setup(props) {
-    const { fetchedData: recipe, error, fetchData } = fetchService(`http://localhost:3000/recipes/${props.id}`);
-    const router = useRouter();
-    const route = useRoute();
-    const uri = `http://localhost:3000/recipes/${props.id}`;
-    onMounted(() => {
-      fetchData();
-    });
+<script setup>
+  // import getSingleRecipe from "@/composables/getSingleRecipe";
+  import fetchService from "@/composables/fetchService";
+  import Spinner from "@/components/Spinner.vue";
+  import { onMounted } from 'vue'
+  import { useRouter, useRoute } from "vue-router";
+  // props: ["id"],
+  const props = defineProps({
+    id: Number
+  })
+  const { fetchedData: recipe, error, fetchData } = fetchService(`http://localhost:3000/recipes/${props.id}`);
+  const router = useRouter();
+  const route = useRoute();
+  const uri = `http://localhost:3000/recipes/${props.id}`;
+  onMounted(() => {
+    fetchData();
+  });
 
-    const deleteRecipe = () => {
-      if (confirm('Do you really want to delete this Recipe?')) {
-        fetch(uri, { method: 'DELETE' })
-        router.push({name: 'HomeView'})
-      } else {
-        console.log('was not deleted from database');
-      }
+  const deleteRecipe = () => {
+    if (confirm('Do you really want to delete this Recipe?')) {
+      fetch(uri, { method: 'DELETE' })
+      router.push({name: 'HomeView'})
+    } else {
+      console.log('was not deleted from database');
     }
+  }
 
-    const toggleFavoriteFromDetails = async () => {
-      await fetch(uri, { 
-        method: 'PATCH',
-        headers: { 'Content-Type': 'Application/json' },
-        body: JSON.stringify({favorite: !recipe.value.favorite})
-      }).then(() => {
-        fetchData()
-      }).catch(err => console.log(err))
-    }
+  const toggleFavoriteFromDetails = async () => {
+    await fetch(uri, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'Application/json' },
+      body: JSON.stringify({favorite: !recipe.value.favorite})
+    }).then(() => {
+      fetchData()
+    }).catch(err => console.log(err))
+  }
 
-    // const handleDelete = (id) => {
-    //   recipe.value = recipe.value.filter((recipe) => {
-    //     return id !== recipe.id;
-    //   });
-    // };
-
-    return { recipe, error, deleteRecipe, route, toggleFavoriteFromDetails };
-  },
-};
+  // const handleDelete = (id) => {
+  //   recipe.value = recipe.value.filter((recipe) => {
+  //     return id !== recipe.id;
+  //   });
+  // };
 </script>
 
 <style scoped>
@@ -97,9 +94,12 @@ export default {
   padding: 0.3rem 0.6rem;
   border-radius: 1rem;
 }
-ul {
-  margin-left: 1rem;
+ul.detail-ingredients {
+  margin-left: 1.2rem;
   font-size: 1.25rem;
+}
+ul.detail-ingredients li {
+  padding-block: .3rem;
 }
 .detail-desc {
   font-size: 1.25rem;
