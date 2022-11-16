@@ -8,8 +8,7 @@
     <div class="ingredients-container" v-for="(ingredient, index) in ingredients" :key="`ingredientInput-${index}`">
       <input v-model="ingredient.ingredient" type="text" placeholder="Ingredient"/>
       <span @click="addIngredient(ingredients)" class="material-icons">add</span>
-      <span v-if="ingredients.length > 1" @click="removeIngredient(ingredients, index)"
-            class="material-icons remove">remove</span>
+      <span v-if="ingredients.length > 1" @click="removeIngredient(ingredients, index)" class="material-icons remove">remove</span>
     </div>
     <!-- <input v-model="ingredients.ingredient_1" type="text" placeholder="Ingredient 1" />
     <input v-model="ingredients.ingredient_2" type="text" placeholder="Ingredient 2" />

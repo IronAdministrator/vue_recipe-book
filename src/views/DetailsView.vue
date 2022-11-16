@@ -8,7 +8,7 @@
     </div>
     <hr />
     <h2>{{ recipe.title }}</h2>
-    {{typeof recipe.id}}
+    <!-- {{typeof recipe.id}} -->
     <ul class="detail-ingredients">
       <li v-for="ingredient in recipe.ingredients" :key="recipe.id">
         {{ ingredient.ingredient }}
@@ -39,7 +39,7 @@
   import { useRouter, useRoute } from "vue-router";
   // props: ["id"],
   const props = defineProps({
-    id: Number
+    id: String
   })
   const { fetchedData: recipe, error, fetchData } = fetchService(`http://localhost:3000/recipes/${props.id}`);
   const router = useRouter();

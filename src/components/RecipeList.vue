@@ -1,6 +1,6 @@
 <template>
   <div class="recipe-list">
-    <FilterNav @filterChange="updateFillter" :currentFilter="currentFilter"/>
+    <FilterNav @filterChange="updateFilter" :currentFilter="currentFilter"/>
     <div v-for="recipe in filteredRecipes" :key="recipe.id">
       <SingleRecipe :recipe="recipe" @favorite="handleFavorite"/>
       <!-- props "recipe" zu SingleRecipe Komponent weiterleiten -->
@@ -29,7 +29,7 @@ const handleFavorite = (id) => {
   fav.favorite = !fav.favorite;
 };
 
-const updateFillter = (event) => {
+const updateFilter = (event) => {
   currentFilter.value = event
 }
 const filteredRecipes = computed(() => {
